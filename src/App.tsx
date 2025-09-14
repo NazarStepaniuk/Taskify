@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import TaskInput from './components/taskInput/TaskInput';
+import TaskList from './components/taskList/TaskList';
+
 import Task from './model';
 
 const App = () => {
@@ -20,6 +22,7 @@ const App = () => {
         <div className='app'>
             <h1>taskify</h1>
             <TaskInput task={inputValue} setTask={setInputValue} handleAdd={handleAdd}/>
+            <TaskList taskes={taskes} setTaskes={setTaskes}/>
         </div>
     );
 }
