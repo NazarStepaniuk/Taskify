@@ -11,7 +11,7 @@ const TaskList = ({taskes, setTaskes}: TaskListProps) =>{
     return(
         <ul className="task-list">
             {taskes.map(task => (
-                <TaskItem task={task} taskes={taskes} setTaskes={setTaskes}/>
+                <TaskItem key={task.id} task={task} taskes={taskes} setTaskes={setTaskes}/>
             ))}
         </ul>
     )
