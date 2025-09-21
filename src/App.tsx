@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { DragDropContext } from '@hello-pangea/dnd';
+
 import './App.css';
+
 import TaskInput from './components/taskInput/TaskInput';
 import TaskList from './components/taskList/TaskList';
-
 import Task from './model';
+
 
 const App = () => {
     const [inputValue, setInputValue] = useState("");
     const [taskes, setTaskes] = useState<Task[]>([]);
+    const [completedTaskes, setCompletedTaskes] = useState<Task[]>([]);
 
     const handleAdd = (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,11 +23,18 @@ const App = () => {
     }
 
     return (
-        <div className='app'>
-            <h1>taskify</h1>
-            <TaskInput task={inputValue} setTask={setInputValue} handleAdd={handleAdd}/>
-            <TaskList taskes={taskes} setTaskes={setTaskes}/>
-        </div>
+        <DragDropContext onDragEnd={()=>{}}>
+            <div className='app'>
+                <h1>taskify</h1>
+                <TaskInput task={inputValue} setTask={setInputValue} handleAdd={handleAdd}/>
+                <TaskList 
+                    taskes={taskes}
+                    setTaskes={setTaskes}
+                    completedTaskes={completedTaskes}
+                    setCompletedTaskes={setCompletedTaskes}/>
+            </div>
+        </DragDropContext>
+        
     );
 }
 
