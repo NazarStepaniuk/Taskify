@@ -47,9 +47,12 @@ const TaskItem = ({index, task, taskes, setTaskes}: TaskItemProps) =>{
     return (
         <Draggable draggableId={task.id.toString()} index={index}>
             {
-                (provided) => (
-                    <li className="task-item" key={task.id} ref={provided.innerRef}
-                        {...provided.draggableProps} {...provided.dragHandleProps}>
+                (provided, snapshot) => (
+                    <li className={`task-item ${snapshot.isDragging ? "drag" : ""}`}
+                        key={task.id}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}>
                         {
                             isEditing ? 
                             <input type="text" value={editText} className="task-item__text"

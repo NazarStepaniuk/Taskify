@@ -16,8 +16,10 @@ const TaskList = ({taskes, setTaskes, completedTaskes, setCompletedTaskes}: Task
         <div className="container">
             <Droppable droppableId="TaskesList">
                 {
-                    (provided) => (
-                        <div className="task-list" ref={provided.innerRef} {...provided.droppableProps}>
+                    (provided, snapshot) => (
+                        <div className={`task-list ${snapshot.isDraggingOver ? "dragactive" : ""}`} 
+                             ref={provided.innerRef}
+                             {...provided.droppableProps}>
                             <span className="task-list__heading">Active Taskes</span>
                             <ul>
                                 {taskes.map((task, index) => (
@@ -31,8 +33,10 @@ const TaskList = ({taskes, setTaskes, completedTaskes, setCompletedTaskes}: Task
             </Droppable>
             <Droppable droppableId="CompletedTaskesList">
                 {
-                    (provided) => (
-                        <div className="task-list remove" ref={provided.innerRef} {...provided.droppableProps}>
+                    (provided, snapshot) => (
+                        <div className={`task-list remove ${snapshot.isDraggingOver ? "dragcomplete" : ""}`}
+                             ref={provided.innerRef}
+                             {...provided.droppableProps}>
                             <span className="task-list__heading">Completed Taskes</span>
                             <ul>
                                 {completedTaskes.map((task, index) => (
